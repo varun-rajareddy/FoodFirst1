@@ -48,6 +48,32 @@ app.post('/login', (req, res, next) => {
 });
 
 
+//Order Details
+
+app.post('/order', (req, res, next) => {
+    var data = req.body;
+    var Selected_Item_Name = data.Selected_Item_Name;
+    var Selected_Item_Price = data.Selected_Item_Price;
+
+    connection.query("SELECT * FROM orderDeatils WHERE Selected_Item_Name= ?", [Selected_Item_Name], function (err, result, fields) {
+        connection.on('error', (err) => {
+            console.log("[MySQL ERROR]", err);
+        });
+        
+            var insert_cmd = "INSERT INTO orderDetails (Selected_Item_Name,Selected_Item_Price) values(?,?)";
+            values = [Selected_Item_Name, Selected_Item_Price];
+
+            console.log("executing: " + insert_cmd + " " + values);
+            connection.query(insert_cmd, values, (err, results, fields) => {
+                connection.on('err', (err) => {
+                    console.log("[MySQL ERROR]", err);
+                });
+                res.json("User Ordered");
+                console.log("Order Successful.");
+            });
+        
+    });
+});
 
 var server = app.listen(3000, () => {
     console.log("Server running at http://localhost:3000");
