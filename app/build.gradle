@@ -41,28 +41,10 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
-
-
-    //Rxjava
-
-    implementation "io.reactivex.rxjava3:rxjava:3.0.8"
-//    implementaion 'io.reactivex.rxjava3:rxandroid:3.0.8'
-//    implementaion ' io.reactivex.rxjava2:rxjava:2.1.7'
-//
-//    //Material Dialog
-//
-//    implementaion 'com.rengwuxian.materialedittext:library:2.1.4'
-    //Matreial Dialog
-
-    //Implementation 'com.github.javiersantos:MaterialStyledDialogs:2.1'
-
-  //  Implementation 'com.github.material-components:material-components-android:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

@@ -3,7 +3,6 @@ package com.example.foodfirst;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,20 +10,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.example.foodfirst.models.JsonPlaceHolderApi;
 import com.example.foodfirst.models.RetrofitInstance;
-import com.google.android.material.button.MaterialButton;
 
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity{
-
-
     public static final String TAG = "MainActivity";
     public static final String KEY_NAME1 = "name";
     public static final String KEY_NAME2 = "number";
@@ -33,26 +27,13 @@ public class MainActivity extends AppCompatActivity{
     public EditText personName;
     public EditText personNumber;
 
-    JsonPlaceHolderApi myAPI;
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
-
-    @Override
-    protected void onStop() {
-        compositeDisposable.clear();
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        compositeDisposable.clear();
-        super.onDestroy();
-    }
-
-    //  public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //public FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         personName = findViewById(R.id.personName);
         personNumber = findViewById(R.id.personNumber);
@@ -62,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 loginDetails();
             }
         });
@@ -72,10 +54,12 @@ public class MainActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+
     public void loginDetails() {
 
         String name = personName.getText().toString();
         String number = personNumber.getText().toString();
+
         Call<String> call = RetrofitInstance.getClient().login(
                 name,
                 number
@@ -83,10 +67,8 @@ public class MainActivity extends AppCompatActivity{
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                 Toast.makeText(MainActivity.this, "logged in", Toast.LENGTH_LONG).show();
-                SharedPreferences sp = getSharedPreferences(PREFNAME,MODE_PRIVATE);
-                sp.edit().putString(KEY_NAME1,personName.getText().toString())
-                        .apply();
+                Toast.makeText(MainActivity.this, "logged in", Toast.LENGTH_LONG).show();
+
                 openActivity2();
             }
 

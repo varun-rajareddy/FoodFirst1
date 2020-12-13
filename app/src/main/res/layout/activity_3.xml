@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+
     tools:context=".Activity3">
 
     <TextView
@@ -20,7 +21,7 @@
         android:textSize="30sp"/>
 
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginLeft="16dp"
@@ -160,7 +161,14 @@
             android:layout_marginTop="10dp"
             android:text="Buy"
             android:textColor="@android:color/white"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
 
-</RelativeLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/list"
+        tools:listitem="@layout/row_items"/>
+
+
+</LinearLayout>

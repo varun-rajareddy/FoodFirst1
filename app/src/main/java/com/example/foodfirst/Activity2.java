@@ -1,6 +1,5 @@
 package com.example.foodfirst;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,16 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodfirst.models.loginPerson;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.example.foodfirst.models.RetrofitInstance;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import static com.example.foodfirst.MainActivity.KEY_NAME1;
-import static com.example.foodfirst.MainActivity.KEY_NAME2;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Activity2 extends AppCompatActivity {
 
@@ -35,7 +30,9 @@ public class Activity2 extends AppCompatActivity {
         retriveName = findViewById(R.id.retriveName);
         menubtn = findViewById(R.id.menubtn);
 
-        retriveName.setText(getSharedPreferences(MainActivity.PREFNAME,MODE_PRIVATE).getString(KEY_NAME1,""));
+        getName();
+
+
 
         menubtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +43,24 @@ public class Activity2 extends AppCompatActivity {
 
 
     }
+
+    private void getName() {
+
+        Call<String> call = RetrofitInstance.getClient().getUserName();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                retriveName.setText(response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+                Toast.makeText(Activity2.this, "Error Retrieving Name", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void openActivity3() {
 
         Intent intent3 = new Intent(this,Activity3.class);
