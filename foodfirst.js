@@ -75,6 +75,46 @@ app.post('/order', (req, res, next) => {
     });
 });
 
+
+app.get('/getItems', (req, res) => {   
+    let sql = "SELECT * FROM items";
+  let query = connection.query(sql, (err, results) => {
+      console.log(results.length);
+      res.setHeader('Content-Type', 'application/json');
+      if(results.length !=0){
+
+        var json = JSON.stringify({ 
+            "res": "success", 
+            "items": results, 
+            "message": "data Received"
+          });
+          res.end(json);
+      }else{
+        var json = JSON.stringify({ 
+            "res": "failed", 
+            "items": results, 
+            "message": "No data Received"
+          });
+          res.end(json);
+      }
+    
+  });
+        
+  });
+
+
+  app.get('/getUsername', (req, res) => {   
+    let sql = "SELECT * FROM logindetails ORDER BY person_id DESC LIMIT 1 ";
+  let query = connection.query(sql, (err, results) => {
+      console.log(results.length);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(results[0].name)
+    
+  });
+        
+  });
+
+
 var server = app.listen(3000, () => {
     console.log("Server running at http://localhost:3000");
 });
