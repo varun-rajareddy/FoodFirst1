@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "488656339366",
+    "firebase_url": "https://foodfirst-f3a1a.firebaseio.com",
+    "project_id": "foodfirst-f3a1a",
+    "storage_bucket": "foodfirst-f3a1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488656339366:android:7f6b664c4f79622e6ecf67",
+        "android_client_info": {
+          "package_name": "com.example.foodfirst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488656339366-3kg06i79anpgmnhmpbmhlbb31399k8rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPn8TxHteRLxwEX-sExw4ahLzF52E_Qbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488656339366-3kg06i79anpgmnhmpbmhlbb31399k8rd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
